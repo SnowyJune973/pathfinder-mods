@@ -31,14 +31,10 @@
     <Content Include="Warpriest\Warpriest.cs" />
     <Content Include="Testing\SaveCompatibility.cs" />
     <Content Include="Testing\baseline_assets.txt" />
-    <Content Include="Spells\PrestigiousSpellcaster.cs" />
-    <Content Include="Spells\Metamagic.cs" />
-    <Content Include="Spells\MagicFeats.cs" />
     <Content Include="Spells\TimeStop.cs" />
     <Content Include="Spells\Fly.cs" />
     <Content Include="Spells\FireSpells.cs" />
     <Content Include="Spells\Spells.cs" />
-    <Content Include="Spells\KnockDetectSecrets.cs" />
     <Content Include="Spells\KnockAndDetectSecrets.cs" />
     <Content Include="Spells\DismissSpell.cs" />
     <Content Include="Spells\ReplaceSpell.cs" />

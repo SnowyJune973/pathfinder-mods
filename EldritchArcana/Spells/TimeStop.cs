@@ -51,8 +51,8 @@ namespace EldritchArcana
             var expeditiousRetreatBuff = library.Get<BlueprintBuff>("9ea4ec3dc30cd7940a372a4d699032e7");
             var dispelMagicGreater = library.Get<BlueprintAbility>("f0f761b808dc4b149b08eaf44b99f633");
 
-            var freezeBuff = Helpers.CreateBuff("TimeStopFreezeBuff", "Frozen in Time",
-                "Time stop is active for another unit, freezing apparent time for them.",
+            var freezeBuff = Helpers.CreateBuff("TimeStopFreezeBuff", Main.lc.GetTranslate("Timestop.abTimeStopFreezeName"),
+                Main.lc.GetTranslate("Timestop.abTimeStopFreezeDesc"),
                 "fb33065de053485394dd9bfe99a86337",
                 dispelMagicGreater.Icon, null,
                 UnitCondition.CantAct.CreateAddCondition(),
@@ -61,10 +61,8 @@ namespace EldritchArcana
                 Helpers.Create<Untargetable>(),
                 Helpers.Create<EraseFromTimeEffect>());
 
-            var buff = Helpers.CreateBuff("TimeStopBuff", "Time Stop",
-                "This spell seems to make time cease to flow for everyone but you. In fact, you speed up so greatly that all other creatures seem frozen, though they are actually still moving at their normal speeds. You are free to act for 1d4+1 rounds of apparent time. Normal and magical fire, cold, gas, and the like can still harm you. While the time stop is in effect, other creatures are invulnerable to your attacks and spells; you cannot target such creatures with any attack or spell. A spell that affects an area and has a duration longer than the remaining duration of the time stop have their normal effects on other creatures once the time stop ends. Most spellcasters use the additional time to improve their defenses, summon allies, or flee from combat.\n" +
-                "You cannot move or harm items held, carried, or worn by a creature stuck in normal time, but you can affect any item that is not in another creature’s possession.\n" +
-                "You are undetectable while time stop lasts. You cannot enter an area protected by an antimagic field while under the effect of time stop.",
+            var buff = Helpers.CreateBuff("TimeStopBuff", Main.lc.GetTranslate("Timestop.abTimeStopName"),
+                Main.lc.GetTranslate("Timestop.abTimeStopDesc"),
                 "a5adb4794e364485bca802e7ecfb694a",
                 freezeBuff.Icon, expeditiousRetreatBuff.FxOnStart,
                 UnitCondition.ImmuneToAttackOfOpportunity.CreateAddCondition(),
@@ -73,7 +71,7 @@ namespace EldritchArcana
 
             var spell = TimeStop.spell = Helpers.CreateAbility("TimeStop", buff.Name, buff.Description,
                 "661c8d61f47d4c5c93e34f7d8692e81b", buff.Icon, AbilityType.Spell,
-                CommandType.Standard, AbilityRange.Personal, "1d4+1 rounds (apparent time)", "",
+                CommandType.Standard, AbilityRange.Personal, Main.lc.GetTranslate("Timestop.abTimeStopLen"),"",
                 expeditiousRetreat.GetComponent<AbilitySpawnFx>(),
                 Helpers.CreateSpellComponent(SpellSchool.Transmutation),
                 Helpers.CreateRunActions(Helpers.CreateApplyBuff(buff,

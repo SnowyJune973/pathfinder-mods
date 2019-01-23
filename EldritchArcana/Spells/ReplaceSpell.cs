@@ -101,7 +101,7 @@ namespace EldritchArcana
         {
             var caster = spellbook.CharacterClass;
 
-            var displayName = $"Replace Spell ({spellbook.CharacterClass.Name})";
+            var displayName = string.Format(Main.lc.GetTranslate("ReplaceSpell.ReplaceSpellDisplayText"), spellbook.CharacterClass.Name);
             var description = GetDescription(spellbook);
             Sprite icon = null; // TODO: grab icon like the spellbook UI does
 
@@ -142,7 +142,8 @@ namespace EldritchArcana
             var thirdSpell = firstSpell + replacementFrequency * 2;
 
             var className = spellbook.CharacterClass.Name.ToLower();
-            return $"Upon reaching {firstSpell}th level, and at every {replacementFrequency} {className} level after that ({secondSpell}th, {thirdSpell}th, and so on), a {className} can choose to learn a new spell in place of one they already know. In effect, the {className} loses the old spell in exchange for the new one. The new spell's level must be the same as that of the spell being exchanged. A {className} may swap only a single spell at any given level, and must choose whether or not to swap the spell at the same time that they gain new spells known for the level.";
+            return string.Format(Main.lc.GetTranslate("ReplaceSpell.ReplaceSpellDesc"), firstSpell, replacementFrequency, className, secondSpell, thirdSpell);
+            
         }
 
         internal static bool CanReplaceSpellThisLevel(Spellbook spellbook)
@@ -192,7 +193,8 @@ namespace EldritchArcana
         static BlueprintFeature CreateKeepAllSpellsFeat(BlueprintSpellbook spellbook)
         {
             var feat = Helpers.CreateFeature(spellbook.name + "KnownAllSpellsFeature",
-                "Keep all spells", "Choose this to skip replacing a known spell this level.",
+                Main.lc.GetTranslate("ReplaceSpell.KeepSpellDisplayText"),
+                Main.lc.GetTranslate("ReplaceSpell.KeepSpellDesc"),
                 Helpers.MergeIds(spellbook.AssetGuid, "b09dfa039e3e4893a8c1f5df5c7f8195"),
                 spellbook.CharacterClass.Icon,
                 FeatureGroup.None);
