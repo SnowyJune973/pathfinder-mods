@@ -25,7 +25,6 @@
     <Content Include="Feats\MagicFeats.cs" />
     <Content Include="Feats\Metamagic.cs" />
     <Content Include="Feats\PrestigiousSpellcaster.cs" />
-    <Content Include="Repository.json" />
     <Content Include="Sorcerer\Crossblooded.cs" />
     <Content Include="Sorcerer\Bloodlines.cs" />
     <Content Include="Warpriest\Warpriest.cs" />

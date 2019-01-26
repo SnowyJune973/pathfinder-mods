@@ -84,6 +84,7 @@
   <ItemGroup>
     <None Include="Info.json" />
     <None Include="jsconfig1.json" />
+    <Content Include="Repository.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

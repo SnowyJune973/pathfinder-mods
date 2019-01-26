@@ -6,6 +6,7 @@
   "ManagerVersion": "0.12.2",
   "Requirements": [ ],
   "AssemblyName": "PlayerBiography.dll",
-  "EntryMethod": "PlayerBiography.Main.Load"
+  "EntryMethod": "PlayerBiography.Main.Load",
+  "Repository": 
 }
 
