@@ -2,10 +2,11 @@
   "Id": "PlayerBio",
   "DisplayName": "PlayerBiography",
   "Author": "SnowyJune",
-  "Version": "0.1.1",
+  "Version": "0.1.2",
   "ManagerVersion": "0.12.2",
-  "Requirements": [ ],
+  "Requirements": [],
   "AssemblyName": "PlayerBiography.dll",
-  "EntryMethod": "PlayerBiography.Main.Load"
+  "EntryMethod": "PlayerBiography.Main.Load",
+  "Repository": "https://raw.githubusercontent.com/SnowyJune973/pathfinder-mods/master/PlayerBiography/Repository.json"
 }
 
