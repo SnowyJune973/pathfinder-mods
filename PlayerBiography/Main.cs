@@ -24,13 +24,14 @@ namespace PlayerBiography {
         public static UnityModManager.ModEntry modEntry;
         static bool Load(UnityModManager.ModEntry modEntry) {
             isOn = true;
+            Main.modEntry = modEntry;
             lsdm = new LoadingScreenDescModify();
             text1_area = "";
             text1_datas = new Dictionary<UnitReference, string>();
             LoadPatches.Load();
             modEntry.OnToggle = new Func<UnityModManager.ModEntry, bool, bool>(Main.OnToggle);
             modEntry.OnGUI = new Action<UnityModManager.ModEntry>(Main.OnGUI);
-            Main.modEntry = modEntry;
+
             return true;
         }
         
