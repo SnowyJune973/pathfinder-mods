@@ -17,12 +17,12 @@ namespace EldritchArcana {
             StreamReader fin = new StreamReader(fs);
             string line;
             while((line = fin.ReadLine()) != null) {
-                var phrs = line.Split('\t');
+                var phrs = line.Split(new char[] { '=' }, 2);
                 if(phrs.GetLength(0) < 2) {
                     continue;
                 }
-                phrs[1] = phrs[1].Replace('杪', '\n');
-                phrs[1] = phrs[1].Replace('厸', '\t');
+                phrs[1] = phrs[1].Replace("\\n","\n");
+                phrs[1] = phrs[1].Replace("\\t", "\t");
                 dict.Add(phrs[0], phrs[1]);
             }
             fin.Close();

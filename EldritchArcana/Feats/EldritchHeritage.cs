@@ -51,9 +51,8 @@ namespace EldritchArcana
             var spellSpecialization = library.Get<BlueprintFeatureSelection>("fe67bc3b04f1cd542b4df6e28b6e0ff5");
             //var noFeature = Helpers.Create<PrerequisiteNoFeature>();
             heritageSelection = Helpers.CreateFeatureSelection("EldritchHeritageSelection",
-                "Eldritch Heritage",
-                "You are descended from a long line of sorcerers, and some portion of their power flows in your veins.\n" +
-                "Select one sorcerer bloodline. You must have Skill focus in the class skill that bloodline grants to a sorcerer at 1st level (for example, Heal for the celestial bloodline). This bloodline cannot be a bloodline you already have. You gain the first-level bloodline power for the selected bloodline. For purposes of using that power, treat your sorcerer level as equal to your character level – 2, even if you have levels in sorcerer. You do not gain any of the other bloodline abilities.",
+                Main.lc.GetTranslate("EldritchHeritage.ftEldritchHeritageName"),
+                Main.lc.GetTranslate("EldritchHeritage.ftEldritchHeritageDesc"),
                 "733b54b0669b4aeda47953ec0e2b33dd",
                 spellSpecialization.Icon,
                 FeatureGroup.Feat);
@@ -67,9 +66,8 @@ namespace EldritchArcana
             heritageSelection.SetComponents(components);
 
             improvedHeritageSelection = Helpers.CreateFeatureSelection("ImprovedEldritchHeritageSelection",
-                "Improved Eldritch Heritage",
-                "The power of your discovered bloodline continues to grow.\n" +
-                "You gain either the 3rd-level or the 9th-level power (your choice) of the bloodline you selected with the Eldritch Heritage feat. For purposes of using that power, treat your sorcerer level as equal to your character level – 2, even if you have levels in sorcerer. You do not gain any of the other bloodline abilities.",
+                Main.lc.GetTranslate("EldritchHeritage.ftImprovedEHName"),
+                Main.lc.GetTranslate("EldritchHeritage.ftImprovedEHDesc"),
                 "c8bd273034684e6689b105a7d8bc9c3b",
                 spellSpecialization.Icon,
                 FeatureGroup.Feat,
@@ -81,9 +79,8 @@ namespace EldritchArcana
 
             var noFeature = Helpers.Create<PrerequisiteNoFeature>();
             var greaterHeritageSelection = Helpers.CreateFeatureSelection("GreaterEldritchHeritageSelection",
-                "Greater Eldritch Heritage",
-                "Your discovered bloodline power reaches its zenith.\n" +
-                "You gain an additional power from the bloodline you selected with the Eldritch Heritage feat. You gain a 15th-level (or lower) sorcerer bloodline power that you do not already have. For purposes of using that power, treat your character level as your sorcerer level for all your sorcerer bloodline powers granted by this feat, Eldritch Heritage, and Improved Eldritch Heritage.",
+                Main.lc.GetTranslate("EldritchHeritage.ftGreaterEHName"),
+                Main.lc.GetTranslate("EldritchHeritage.ftGreaterEHDesc"),
                 "24aad7af058a49f88d1203b856409023",
                 spellSpecialization.Icon,
                 FeatureGroup.Feat,
@@ -99,7 +96,7 @@ namespace EldritchArcana
             var improvedHeritageFeats = new List<BlueprintFeature> { undoChoice };
             var greaterHeritageFeats = new List<BlueprintFeature> { undoChoice };
             var featDescription = new StringBuilder(heritageSelection.Description)
-                .Append($"\n{bloodlineSelection.Name} — {Helpers.skillFocusFeat.Name} prerequisites:");
+                .Append(string.Format(Main.lc.GetTranslate("EldritchHeritage.stSkillFocusReqDesc"), bloodlineSelection.Name, Helpers.skillFocusFeat.Name));
 
             bool seenDraconic = false;
             bool seenElemental = false;
@@ -118,7 +115,7 @@ namespace EldritchArcana
                     {
                         var i = bloodlineName.IndexOf(" — ");
                         if (i >= 0) bloodlineName = bloodlineName.Substring(0, i);
-                        featDescription.Append($"\n  {bloodlineName} — {classSkillName}");
+                        featDescription.Append(string.Format(Main.lc.GetTranslate("EldritchHeritage.stBLNameClsSkillName"), bloodlineName, classSkillName));
                         seenDraconic = true;
                     }
                 }
@@ -128,13 +125,13 @@ namespace EldritchArcana
                     {
                         var i = bloodlineName.IndexOf(" — ");
                         if (i >= 0) bloodlineName = bloodlineName.Substring(0, i);
-                        featDescription.Append($"\n  {bloodlineName} — {classSkillName}");
+                        featDescription.Append(string.Format(Main.lc.GetTranslate("EldritchHeritage.stBLNameClsSkillName"), bloodlineName, classSkillName));
                         seenElemental = true;
                     }
                 }
                 else
                 {
-                    featDescription.Append($"\n  {bloodlineName} — {classSkillName}");
+                    featDescription.Append(string.Format(Main.lc.GetTranslate("EldritchHeritage.stBLNameClsSkillName"), bloodlineName, classSkillName));
                 }
 
                 // Create Improved Eldrith Heritage (choice of level 3/9 powers and use level -2, can select twice, Prereq: level 11+, Cha 15+)
@@ -189,7 +186,7 @@ namespace EldritchArcana
                     StatType.SkillLoreNature,
                     StatType.SkillLoreReligion
                 }.Select(Helpers.GetSkillFocus)));
-                classSkillName = "Any Lore/Knowledge Skill";
+                classSkillName = Main.lc.GetTranslate("EldritchHeritage.stArcaneClsSkillName");
             }
             else
             {
@@ -209,7 +206,7 @@ namespace EldritchArcana
                     // So offer that choice, along with Athletics (which is what the game gives them).
                     components.Add(skillFocus.PrerequisiteFeature(true));
                     components.Add(Helpers.GetSkillFocus(StatType.SkillLoreReligion).PrerequisiteFeature(true));
-                    classSkillName += $" or {UIUtility.GetStatText(StatType.SkillLoreReligion)}";
+                    classSkillName += string.Format(Main.lc.GetTranslate("EldritchHeritage.stAbyssalClsSkNm"), UIUtility.GetStatText(StatType.SkillLoreReligion));
                 }
                 else
                 {
@@ -221,7 +218,7 @@ namespace EldritchArcana
             var power = GetBloodlinePower(bloodline, powerLevel);
             return CreateHeritageFeat(bloodline, power, powerLevel,
                 $"{bloodline.name.Replace("Progression", "")}EldritchHeritage",
-                $"Eldritch Heritage — {bloodline.Name}",
+                string.Format(Main.lc.GetTranslate("EldritchHeritage.stEHSubName"), bloodline.Name),
                 bloodline.Icon,
                 Helpers.MergeIds(bloodline.AssetGuid, "7114742a530d4946ba36888247422abe"),
                 components);
@@ -232,7 +229,7 @@ namespace EldritchArcana
             var power = GetBloodlinePower(bloodline, powerLevel);
             return CreateHeritageFeat(bloodline, power, powerLevel,
                 $"{GetPowerName(power)}ImprovedHeritage",
-                $"Improved Eldritch Heritage — {power.Name}",
+                string.Format(Main.lc.GetTranslate("EldritchHeritage.stImporvedEHSubName"), power.Name),
                 power.Icon,
                 Helpers.MergeIds(power.AssetGuid, "6a4ec4f556ff4f0d9581722972cb6600"),
                 new List<BlueprintComponent> { heritageFeat.PrerequisiteFeature() });
@@ -248,7 +245,7 @@ namespace EldritchArcana
         {
             var power = GetBloodlinePower(bloodline, powerLevel);
             var name = $"{GetPowerName(power)}GreaterHeritage";
-            var displayName = $"Greater Eldritch Heritage — {power.Name}";
+            var displayName = string.Format(Main.lc.GetTranslate("EldritchHeritage.stGreaterEHSubName"), power.Name);
             var assetId = Helpers.MergeIds(power.AssetGuid, "f2f2797315644c32a949182d79ae151e");
             if (improvedFeat != null)
             {
@@ -443,7 +440,7 @@ namespace EldritchArcana
 
         static BloodlineLevelLogic()
         {
-            var description = "Eldritch Heritage/Crossblooded advancement";
+            var description = Main.lc.GetTranslate("EldritchHeritage.stEHPatchDesc");
             Main.ApplyPatch(typeof(BindAbilitiesToClass_GetLevel_Patch), description);
             Main.ApplyPatch(typeof(AddFeatureOnClassLevel_GetLevel_Patch), description);
             Main.ApplyPatch(typeof(ReplaceCasterLevelOfAbility_CalculateClassLevel_Patch), description);

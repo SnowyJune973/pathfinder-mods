@@ -1,0 +1,11 @@
+{
+  "Id": "PlayerBio",
+  "DisplayName": "PlayerBiography",
+  "Author": "SnowyJune",
+  "Version": "0.0.0",
+  "ManagerVersion": "0.12.2",
+  "Requirements": [ ],
+  "AssemblyName": "PlayerBiography.dll",
+  "EntryMethod": "PlayerBiography.Main.Load"
+}
+

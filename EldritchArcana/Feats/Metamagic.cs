@@ -71,7 +71,7 @@ namespace EldritchArcana
             var library = Main.library;
 
             // Patch the cost computation for metamagics so the new ones are recognized.
-            Main.ApplyPatch(typeof(MetamagicHelper_DefaultCost_Patch), "Spell level cost for new metamagic feats");
+            Main.ApplyPatch(typeof(MetamagicHelper_DefaultCost_Patch), Main.lc.GetTranslate("Metamagic.stMetamagicCostDesc"));
 
             foreach (var spell in Helpers.allSpells)
             {
@@ -121,26 +121,22 @@ namespace EldritchArcana
             // The spell schools here are very arbitrary, it's just a way to get unique icons for each.
             var feats = new List<BlueprintFeature>();
             feats.Add(CreateMetamagicFeat(
-                ModMetamagic.Dazing, "2a9007dd7d9e4dfab2e5eef02d1cb596", "Dazing Spell",
-                "You can modify a spell to daze a creature damaged by the spell. When a creature takes damage from this spell, they become dazed for a number of rounds equal to the original level of the spell. If the spell allows a saving throw, a successful save negates the daze effect. If the spell does not allow a save, the target can make a Will save to negate the daze effect. If the spell effect also causes the creature to become dazed, the duration of this metamagic effect is added to the duration of the spell." +
-                "\nLevel Increase: +3",
-                /*SpellFocusEnchantment*/
+                ModMetamagic.Dazing, "2a9007dd7d9e4dfab2e5eef02d1cb596", Main.lc.GetTranslate("Metamagic.ftDazingName"),
+                Main.lc.GetTranslate("Metamagic.ftDazingDesc"),
+                 /*SpellFocusEnchantment*/
                 "c5bf645f128c39b40850cde005b8538f",
                 Helpers.Create<DazingMetamagic>(d => d.DazeBuff = library.Get<BlueprintBuff>("9934fedff1b14994ea90205d189c8759"))));
             feats.Add(CreateMetamagicFeat(
-                ModMetamagic.Intensified, "ac3a3d3cdf4e4723bd99c14782092e8e", "Intensified Spell",
-                "An intensified spell increases the maximum number of damage dice by 5 levels. You must actually have sufficient caster levels to surpass the maximum in order to benefit from this feat. No other variables of the spell are affected, and spells that inflict damage that is not modified by caster level are not affected by this feat." +
-                "\nLevel Increase: +1",
+                ModMetamagic.Intensified, "ac3a3d3cdf4e4723bd99c14782092e8e", Main.lc.GetTranslate("Metamagic.ftIntensifiedName"),
+                Main.lc.GetTranslate("Metamagic.ftIntensifiedDesc"),
                 /*SpellFocusDivination*/
                 "955e97411611d384db2cbc00d7ed5ead"));
             // patch to adjust the maximum dice cap.
             ContextRankConfig_GetValue_Patch.Apply();
 
             feats.Add(CreateMetamagicFeat(
-                ModMetamagic.Rime, "72e78961aec04ecfb92c50c280e9d8bb", "Rime Spell",
-                "The frost of your cold spell clings to the target, impeding it for a short time. A rime spell causes creatures that takes cold damage from the spell to become entangled for a number of rounds equal to the original level of the spell." +
-                "\nThis feat only affects spells with the cold descriptor." +
-                "\nLevel Increase: +1",
+                ModMetamagic.Rime, "72e78961aec04ecfb92c50c280e9d8bb", Main.lc.GetTranslate("Metamagic.ftRimeName"),
+                Main.lc.GetTranslate("Metamagic.ftRimeDesc"),
                 /*SpellFocusNecromancy*/
                 "8791da25011fd1844ad61a3fea6ece54",
                 Helpers.Create<RimeMetamagic>(r => r.EntangleBuff = library.Get<BlueprintBuff>("f7f6330726121cf4b90a6086b05d2e38"))));
