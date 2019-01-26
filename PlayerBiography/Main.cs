@@ -21,6 +21,7 @@ namespace PlayerBiography {
         private static int present_actor = -1;
         private static Dictionary<UnitReference, string> text1_datas;
         public static LoadingScreenDescModify lsdm;
+        public static UnityModManager.ModEntry modEntry;
         static bool Load(UnityModManager.ModEntry modEntry) {
             isOn = true;
             lsdm = new LoadingScreenDescModify();
@@ -29,6 +30,7 @@ namespace PlayerBiography {
             LoadPatches.Load();
             modEntry.OnToggle = new Func<UnityModManager.ModEntry, bool, bool>(Main.OnToggle);
             modEntry.OnGUI = new Action<UnityModManager.ModEntry>(Main.OnGUI);
+            Main.modEntry = modEntry;
             return true;
         }
         

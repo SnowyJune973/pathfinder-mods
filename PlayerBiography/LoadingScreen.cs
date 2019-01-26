@@ -60,13 +60,11 @@ namespace PlayerBiography {
         }
 
         public void Read() {
-            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-            UriBuilder uri = new UriBuilder(codeBase);
-            string path = Uri.UnescapeDataString(uri.Path);
-            string dll_dir = Path.GetDirectoryName(path);
+            UnityModManager.ModEntry umm = Main.modEntry;
+            var dll_dir = umm.Path;
             var filepath = Path.Combine(dll_dir, "bio.txt");
             if (!File.Exists(filepath)) {
-                File.Create(filepath);
+                File.Create(filepath).Close();
             }
             FileStream fs = new FileStream(Path.Combine(dll_dir, "bio.txt"), FileMode.Open);
             StreamReader fin = new StreamReader(fs);
@@ -80,10 +78,8 @@ namespace PlayerBiography {
             fs.Close();
         }
         public void Save() {
-            string codeBase = Assembly.GetExecutingAssembly().CodeBase;
-            UriBuilder uri = new UriBuilder(codeBase);
-            string path = Uri.UnescapeDataString(uri.Path);
-            string dll_dir = Path.GetDirectoryName(path);
+            UnityModManager.ModEntry umm = Main.modEntry;
+            var dll_dir = umm.Path;
             FileStream fs = new FileStream(Path.Combine(dll_dir, "bio.txt"), FileMode.Create);
             StreamWriter fout = new StreamWriter(fs);
             foreach (KeyValuePair<string, string> kvp in loadScreenDesc) {

@@ -7,6 +7,7 @@
   "Requirements": [],
   "AssemblyName": "PlayerBiography.dll",
   "EntryMethod": "PlayerBiography.Main.Load",
+  "HomePage": "https://github.com/SnowyJune973/pathfinder-mods/tree/master/PlayerBiography",
   "Repository": "https://raw.githubusercontent.com/SnowyJune973/pathfinder-mods/master/PlayerBiography/Repository.json"
 }
 
