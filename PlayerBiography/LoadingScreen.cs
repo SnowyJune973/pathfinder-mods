@@ -64,6 +64,10 @@ namespace PlayerBiography {
             UriBuilder uri = new UriBuilder(codeBase);
             string path = Uri.UnescapeDataString(uri.Path);
             string dll_dir = Path.GetDirectoryName(path);
+            var filepath = Path.Combine(dll_dir, "bio.txt");
+            if (!File.Exists(filepath)) {
+                File.Create(filepath);
+            }
             FileStream fs = new FileStream(Path.Combine(dll_dir, "bio.txt"), FileMode.Open);
             StreamReader fin = new StreamReader(fs);
             string line;
