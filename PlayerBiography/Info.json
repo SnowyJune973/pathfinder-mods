@@ -2,7 +2,7 @@
   "Id": "PlayerBio",
   "DisplayName": "PlayerBiography",
   "Author": "SnowyJune",
-  "Version": "0.1.2",
+  "Version": "0.1.3",
   "ManagerVersion": "0.12.2",
   "Requirements": [],
   "AssemblyName": "PlayerBiography.dll",
