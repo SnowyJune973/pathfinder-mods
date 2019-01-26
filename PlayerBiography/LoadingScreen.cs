@@ -62,6 +62,7 @@ namespace PlayerBiography {
         public void Read() {
             UnityModManager.ModEntry umm = Main.modEntry;
             var dll_dir = umm.Path;
+            UnityModManager.Logger.Log(dll_dir, "dll_dir");
             var filepath = Path.Combine(dll_dir, "bio.txt");
             if (!File.Exists(filepath)) {
                 File.Create(filepath).Close();
