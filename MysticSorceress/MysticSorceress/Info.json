@@ -1,0 +1,11 @@
+{
+  "Id": "MysticSor",
+  "DisplayName": "MysticSorceress",
+  "Author": "SnowyJune",
+  "Version": "1.0.0",
+  "ManagerVersion": "0.16.1",
+  "Requirements": [],
+  "AssemblyName": "MysticSorceress.dll",
+  "EntryMethod": "MysticSorceress.Main.Load"
+}
+

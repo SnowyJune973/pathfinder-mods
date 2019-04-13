@@ -58,7 +58,7 @@ namespace PlayerBiography.Patches {
                         UnityModManager.Logger.Log("miao2end", "[LoadingPatch]");
                     }
                     else {
-                        BlueprintCompanionStory blueprintCompanionStory = Game.Instance.Player.CompanionStories.Get(unitReference.Value.Blueprint).LastOrDefault<BlueprintCompanionStory>();
+                        BlueprintCompanionStory blueprintCompanionStory = Game.Instance.Player.CompanionStories.Get(unitReference.Value).LastOrDefault<BlueprintCompanionStory>();
                         TMP_Text characterDesctiptionText = __instance.CharacterDesctiptionText;
                         LocalizedString localizedString = (blueprintCompanionStory != null) ? blueprintCompanionStory.Description : null;
                         characterDesctiptionText.text = UIUtility.GetSaberBookFormat((localizedString == null) ? string.Empty : localizedString, default(Color), 140, null);

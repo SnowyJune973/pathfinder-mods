@@ -4,14 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8ADC348C-9D0D-4838-A5A8-D20CB6A655B3}</ProjectGuid>
+    <ProjectGuid>{A98F2965-5969-40D3-A6CE-F32624157F69}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PlayerBiography</RootNamespace>
-    <AssemblyName>PlayerBiography</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>MysticSorceress</RootNamespace>
+    <AssemblyName>MysticSorceress</AssemblyName>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,6 +47,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -81,15 +83,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LoadingScreen.cs" />
+    <Compile Include="Abilities\AddStatBonusByClassLevel.cs" />
+    <Compile Include="Abilities\PrequisiteFemale.cs" />
+    <Compile Include="Abilities\RemoveDescriptorMetamagic.cs" />
+    <Compile Include="Component\CharmingSmilePersistent.cs" />
+    <Compile Include="Component\MysticGraceDanceIncDC.cs" />
+    <Compile Include="Component\MysticSorceressUnearthlyGrace.cs" />
+    <Compile Include="Component\ResilientIllusionSelective.cs" />
+    <Compile Include="Helpers.cs" />
     <Compile Include="Main.cs" />
-    <Compile Include="Patches\LoadingScreen_SetLoadingArea_Patch.cs" />
-    <Compile Include="LoadPatches.cs" />
+    <Compile Include="MechanismChange.cs" />
+    <Compile Include="MysticSorceress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.json" />
-    <None Include="Repository.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
